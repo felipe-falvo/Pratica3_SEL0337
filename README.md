@@ -4,10 +4,8 @@
 **Integrantes:**
 - Felipe Assis Bernardes Falvo — Nº USP: 15004433
 - Kayke Malaquias Gregorio — Nº USP: 15651561
-- 
-**Local:** EESC-USP, São Carlos - SP  
 
-Esse repositório documenta a Prática 3 da disciplina SEL0337. O roteiro dessa prática é dividido em três Checkpoints.
+Esse repositório documenta a Prática 3 da disciplina SEL0337.
 
 Nessa primeira parte, o grupo começou configurando o ambiente virtual e desenvolvendo o sistema de temporizador regressivo com acionamento de LED. Na próxima semana, o repositório será atualizado e completado com a primeira etapa do roteiro (acionamento de LED por botão com detecção de eventos e Pull-Up).
 
