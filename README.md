@@ -33,25 +33,51 @@ O script desenvolvido usa um cronômetro regressivo definido pelo usuário, que 
 *   **Formatação de Tempo (MM:SS):** A conversão do tempo para o formato de minutos e segundos foi feita utilizando a função `divmod`. A atualização ocorre na mesma linha do terminal utilizando o parâmetro `end='\r'`, fazendo com que a contagem fique sendo na mesma linha.
 *   **Controle de Hardware:** Utilizou-se a biblioteca `RPi.GPIO` configurada no BCM (pino 18). Ao término da contagem, a porta é ativada (`GPIO.HIGH`) e o código é encerrado e limpando as configurações anteriores através do comando `GPIO.cleanup()` no bloco `finally`.
 
-**Trecho da lógica:**
+**Trecho principal da lógica aplicada:**
 ```python
-# Validação de entrada e Type Casting
-try:
-    tempo = int(entrada)
-    if tempo > 0:
-        # Formatação MM:SS e impressão na mesma linha
-        while tempo >= 0:
-            minuto, segundo = divmod(tempo, 60)
-            print('{:02d}:{:02d}'.format(minuto, segundo), end='\r')
-            time.sleep(1)
-            tempo -= 1
+# Função modularizada
+def contagem_LED(tempo):
+    tempo_resto = tempo
+    
+    # While da contagem regressiva:
+    while tempo_resto >= 0:
+        # Separa o tempo em minuto e segundo
+        minuto, segundo = divmod(tempo_resto, 60) 
         
-        GPIO.output(pino_LED, GPIO.HIGH) # Acionamento do hardware
-except ValueError:
-    print("Erro, pois o valor deve ser um numero inteiro")
-```
----
+        # Formatado MM:SS e atualiza na mesma linha (end='\r')
+        print('{:02d}:{:02d}'.format(minuto, segundo), end='\r')
+        
+        # Espera de 1 segundo
+        if tempo_resto > 0:
+            time.sleep(1)
+            
+        tempo_resto = tempo_resto - 1
+        
+    # Acende o LED enviando os 3.3V
+    GPIO.output(pino_LED, GPIO.HIGH)
+    print("\nContagem terminou")
+    print("Led aceso\n")
 
+# Tratamento de exceções (try/except)
+try:
+    # Lógica para receber a entrada do usuário
+    while True:
+        entrada = input("Coloque o tempo (segundos) para contar: ")
+        try:
+            # Type casting para converter a string de entrada para número inteiro
+            tempo = int(entrada)
+            
+            # Aceitar apenas números positivos
+            if tempo > 0:
+                contagem_LED(tempo)
+                break
+            else:
+                print("Erro, pois numero deve ser positivo")
+                
+        except ValueError:
+            # erro caso seja usado letras
+            print("Erro, pois o valor deve ser um numero inteiro")
+```
 ## 3. Estrutura de Diretórios e Fotos
 
 Todos os arquivos gerados nessa primeira sessão colocado na pasta `contagem_regressiva (14_08_2026)`. Abaixo está a descrição de cada arquivo e imagem que comprovam a execução da prática:
