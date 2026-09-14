@@ -17,12 +17,10 @@ O projeto foi desenvolvido dentro de um ambiente virtual. O ambiente foi criado 
 
 **Comandos utilizados na configuração:**
 ```
-# Instalação, criação e ativação do ambiente virtual
 sudo apt install python3-venv -y
 python3 -m venv 3361
 source 3361/bin/activate
 
-# Instalação das bibliotecas isoladas
 pip3 install gpiozero
 pip3 install RPi.GPIO
 ```
@@ -37,6 +35,23 @@ O script desenvolvido usa um cronômetro regressivo definido pelo usuário, que 
 *   **Formatação de Tempo (MM:SS):** A conversão do tempo para o formato de minutos e segundos foi feita utilizando a função `divmod`. A atualização ocorre na mesma linha do terminal utilizando o parâmetro `end='\r'`, fazendo com que a contagem fique sendo na mesma linha.
 *   **Controle de Hardware:** Utilizou-se a biblioteca `RPi.GPIO` configurada no BCM (pino 18). Ao término da contagem, a porta é ativada (`GPIO.HIGH`) e o código é encerrado e limpando as configurações anteriores através do comando `GPIO.cleanup()` no bloco `finally`.
 
+**Trecho da lógica:**
+```python
+# Validação de entrada e Type Casting
+try:
+    tempo = int(entrada)
+    if tempo > 0:
+        # Formatação MM:SS e impressão na mesma linha
+        while tempo >= 0:
+            minuto, segundo = divmod(tempo, 60)
+            print('{:02d}:{:02d}'.format(minuto, segundo), end='\r')
+            time.sleep(1)
+            tempo -= 1
+        
+        GPIO.output(pino_LED, GPIO.HIGH) # Acionamento do hardware
+except ValueError:
+    print("Erro, pois o valor deve ser um numero inteiro")
+```
 ---
 
 ## 3. Estrutura de Diretórios e Fotos
