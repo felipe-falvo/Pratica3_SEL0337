@@ -134,21 +134,21 @@ finally:
 
 Os arquivos utilizados durante a prática estão organizados nos diretórios correspondentes. Além dos códigos-fonte, foram registrados imagens e vídeos para documentar tanto a configuração do ambiente quanto a execução dos sistemas desenvolvidos.
 
-### 📄 Códigos e Registros
+### Códigos e histórico
 
 - **`contagem_regressiva.py`**: Código responsável pela implementação do temporizador regressivo e pelo acionamento do LED ao final da contagem.
 - **`botao.py`**: Código do acionamento do LED através do botão, utilizando detecção de eventos.
 - **`historico_contagem_14_08.txt`**: Histórico da primeira parte da prática dos comandos utilizados no terminal durante a criação do ambiente virtual `venv 3361` e a instalação das bibliotecas necessárias.
 - **`historico_completo.txt`**: Registro do histórico de comandos executados no terminal durante os dois dias da prática (14/09/26 e 21/09/26). O arquivo comprova desde a criação do ambiente virtual `venv 3361` e a execução inicial da contagem regressiva, até os comandos do segundo dia, em que o ambiente foi reativado (`source 3361/bin/activate`), a pasta foi acessada (`cd 3361/`) e o programa do botão foi testado (`python3 botao.py`).
 
-### 📸 Imagens
+### Imagens
 
 - **`codigo_thonny.jpeg`**: Interface da IDE Thonny no Raspberry Pi, demonstrando o desenvolvimento dos códigos no sistema embarcado.
 - **`execucao_tratamento_erros.jpeg`**: Demonstração do tratamento de entradas inválidas utilizando `try/except`.
 - **`erro_pip_sistema.jpeg`**: Registro do erro `externally-managed-environment` apresentado pelo sistema ao tentar instalar pacotes Python.
 - **`pip_freeze_sistema.jpeg`** e **`historico_comandos_venv.jpeg`**: Registros utilizados para comparar os pacotes disponíveis no sistema com o ambiente virtual criado especificamente para a prática.
 
-### 🔌 Evidências Físicas de Hardware
+### Imagens do hardware
 
 - **`montagem_circuito_led.jpeg`**: Montagem do circuito contendo o LED e o resistor de limitação conectado ao GPIO 18.
 - **`circuito.jpeg`**: Montagem do circuito, incluindo o botão conectado ao GPIO 17 e ao GND da Raspberry Pi.
