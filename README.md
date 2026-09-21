@@ -7,7 +7,7 @@
 
 ---
 
-Esse diretório contém a resolução do **Checkpoint 1**, tendo a configuração do ambiente virtual (`venv`) e o desenvolvimento de dois sistemas utilizando a biblioteca `RPi.GPIO`, sendo um acionador de LED com botão, utilizando detecção de eventos e resistor de Pull-Up, e um temporizador regressivo.
+Esse diretório tem a resolução do **Checkpoint 1**, envolvendo a configuração do ambiente virtual (`venv`) e o desenvolvimento de dois sistemas utilizando a biblioteca `RPi.GPIO`: um acionador de LED com botão, utilizando detecção de eventos e resistor de Pull-Up, e um temporizador regressivo.
 
 ---
 
@@ -68,9 +68,9 @@ A ideia dessa etapa foi implementar um cronômetro regressivo definido pelo usu�
 
 ### Características
 
-- **Tratamento de Exceções (`try/except`):** O código verifica se o valor pode ser convertido para um número inteiro. Caso sejam inseridos caracteres ou valores que não é um número inteiro, uma mensagem de erro é mostrado e uma nova entrada é solicitada, sem interromper a execução do programa.
+- **Tratamento de Exceções (`try/except`):** O código verifica se o valor pode ser convertido para um número inteiro. Caso sejam inseridos caracteres ou valores que não correspondam a um número inteiro, uma mensagem de erro é mostrada e uma nova entrada é solicitada, sem interromper a execução do programa.
 
-- **Type Casting e Validação Lógica:** A entrada recebida pelo terminal é convertida para o tipo inteiro utilizando `int()`. Em seguida, a condição `if tempo > 0` verifica se o valor fornecido é positivo, impedindo que valores negativos sejam utilizados como tempo de contagem.
+- **Type Casting e Validação Lógica:** A entrada recebida pelo terminal é convertida para o tipo inteiro utilizando `int()`. Em seguida, a condição `if tempo > 0` verifica se o valor fornecido é positivo, impedindo que valores negativos ou nulos sejam utilizados como tempo de contagem.
 
 - **Formatação do Tempo (`MM:SS`):** A função `divmod()` é utilizada para separar o tempo restante em minutos e segundos. A exibição é atualizada na mesma linha do terminal utilizando `end='\r'`, evitando a impressão de uma nova linha a cada segundo.
 
@@ -97,7 +97,7 @@ def contagem_LED(tempo):
             
         tempo_resto = tempo_resto - 1
         
-    # acende o LED enviando os 3.3V
+    # coloca o GPIO em nível lógico alto e acende o LED
     GPIO.output(pino_LED, GPIO.HIGH)
     print("\nContagem terminou")
     print("Led aceso\n")
@@ -136,9 +136,10 @@ Os arquivos utilizados durante a prática estão organizados nos diretórios cor
 
 ### 📄 Códigos e Registros
 
-- **`contagem_regressiva.py`**: Código da implementação do temporizador regressivo e pelo acionamento do LED ao final da contagem.
+- **`contagem_regressiva.py`**: Código responsável pela implementação do temporizador regressivo e pelo acionamento do LED ao final da contagem.
 - **`botao.py`**: Código do acionamento do LED através do botão, utilizando detecção de eventos.
 - **`historico_contagem_14_08.txt`**: Histórico da primeira parte da prática dos comandos utilizados no terminal durante a criação do ambiente virtual `venv 3361` e a instalação das bibliotecas necessárias.
+- **`historico_completo.txt`**: Registro do histórico de comandos executados no terminal durante os dois dias da prática (14/09/26 e 21/09/26). O arquivo comprova desde a criação do ambiente virtual `venv 3361` e a execução inicial da contagem regressiva, até os comandos do segundo dia, em que o ambiente foi reativado (`source 3361/bin/activate`), a pasta foi acessada (`cd 3361/`) e o programa do botão foi testado (`python3 botao.py`).
 
 ### 📸 Imagens
 
